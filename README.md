@@ -74,25 +74,6 @@ git clone https://github.com/Arpansharma7/Rag_system.git
 cd Rag_system
 ```
 
-### Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-Activate environment:
-
-#### Windows
-
-```bash
-venv\Scripts\activate
-```
-
-#### Linux / macOS
-
-```bash
-source venv/bin/activate
-```
 
 ### Install Dependencies
 
@@ -135,9 +116,6 @@ python app.py
 * Docker deployment
 * API endpoint integration
 
-## Notes
-
-Large generated vector storage and secret environment files are excluded from version control using `.gitignore`.
 
 ## License
 
