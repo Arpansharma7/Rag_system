@@ -18,14 +18,6 @@ Current implementation supports:
 
 The system is currently operating as a CLI-based prototype.
 
-## Project Architecture
-
-```text
-Documents -> Chunking -> Embeddings -> ChromaDB
-                                          |
-                                          v
-User Query -> Query Embedding -> Retrieval -> LLM Response
-```
 
 ## Tech Stack
 
