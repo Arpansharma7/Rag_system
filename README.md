@@ -49,13 +49,16 @@ Served through Groq API.
 ```text
 Rag_system/
 │
-├── app.py
+├── .github/
+│   └── ISSUE_TEMPLATE/          
 ├── .gitignore
-├── .env
-├── content_dict/
-├── chroma_storage/
-└── README.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── app.py
+└── requirements.txt
 ```
+
 
 ## Setup
 
