@@ -9,6 +9,7 @@ The project is focused on building a simple but scalable document question-answe
 Current implementation supports:
 
 * Loading `.txt` documents from a local directory
+* Loading `.pdf` documents using `pypdf`
 * Splitting documents into overlapping chunks
 * Local embedding generation using `sentence-transformers`
 * Persistent vector storage using ChromaDB
@@ -92,7 +93,6 @@ python app.py
 
 ## Current Limitations
 
-* Only `.txt` files are supported
 * No frontend interface yet
 * No streaming responses
 * No metadata filtering
@@ -101,7 +101,7 @@ python app.py
 
 ## Planned Improvements
 
-* PDF and DOCX ingestion
+* DOCX ingestion
 * Web interface
 * Better chunking strategies
 * Hybrid search

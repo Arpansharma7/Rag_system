@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import chromadb
 from openai import OpenAI
 from sentence_transformers import SentenceTransformer
+from pypdf import PdfReader 
 
 load_dotenv()
 
@@ -31,6 +32,18 @@ collection = chroma_client.get_or_create_collection(
     name="document_qa_collection"
 )
 
+def read_pdf(file_path):
+
+    reader = PdfReader(file_path)
+
+    text = ""
+
+    for page in reader.pages:
+
+        text += page.extract_text() or "" # extract_text() can return None 
+
+    return text
+
 #loading documents from active article dictionary
 
 def load_document_from_directory(directory_path):
@@ -39,18 +52,35 @@ def load_document_from_directory(directory_path):
 
     for file_name in os.listdir(directory_path):
 
+        file_path = os.path.join(directory_path, file_name)
+
         if file_name.endswith(".txt"):
 
             with open(
-                os.path.join(directory_path, file_name),
-                "r",
+                file_path, 
+                "r", 
                 encoding="utf-8"
-            ) as f:
+                ) as f:
 
                 documents.append({
                     "id": file_name,
                     "text": f.read()
                 })
+        
+        elif file_name.endswith(".pdf"):
+            try:
+                text = read_pdf(file_path)
+            except Exception as e:
+                print(f"Skipping {file_name}: failed to read ({e})")
+                continue
+
+            if text.strip():
+                documents.append({
+                    "id": file_name,
+                    "text": text
+                })
+            else:
+                print(f"Skipping {file_name}: no extractable text")
 
     return documents
 
@@ -163,7 +193,7 @@ def generate_response(question, relevant_chunks):
             },
             {
                 "role":"user",
-                "content":"question",
+                "content":question,
             },
         ],
     )
