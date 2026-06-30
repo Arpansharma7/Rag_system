@@ -2,3 +2,4 @@
 chroma_storage/
 venv/
 __pycache__/
+content_dict/
